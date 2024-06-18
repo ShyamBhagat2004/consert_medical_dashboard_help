@@ -8,14 +8,13 @@ class MongoConnector:
         "initialise a Mongodb connector"
         self.dbname = dbname
         self.dburl = f"mongodb://{dbhost}:{dbport}"
-        # self.client = MongoClient(self.dburl)
-        # self.db = self.client[self.dbname]
     
     def connect(self):
         #establish db connection
         self.client = MongoClient(self.dburl)
         self.db = self.client[self.dbname]
 
+        #access collections
         self.patient_data = self.db["patient_data"]
         self.graph_data = self.db["graph_data"]
         self.need_only_data = self.db["need_only_data"]

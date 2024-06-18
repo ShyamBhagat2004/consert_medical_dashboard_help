@@ -22,19 +22,14 @@ async def post_patient_info(item: Patient_data):
     mongo.post_patient_data(item)
     return item
 
-#get patient hourly vitals
+#get patient graph data
 @app.get("/graph_data/{pid}")
 async def get_graph_data(pid: int, start_time= Query(None), end_time = Query(None)):
-    date_format = "%Y-%m-%d %H:%M:%S"
-    # if start_time:
-    #     date = datetime
-    #     start_time = start_time.strftime(date_format)
-    # if end_time:
-    #     end_time = end_time.strftime(date_format)
     return mongo.get_graph_data(pid, start_time, end_time)
 
-#post patient hourly vitals
+#post patient graph data
 @app.post("/graph_data")
 async def post_graph_data(item: graph_data):
     mongo.post_graph_data(item)
     return item
+

@@ -43,8 +43,8 @@ class graph_data(BaseModel):
     AN: int
     Θ: float
     ΑΠΣΦ: int
-    mlow: int
-    mhigh: int
+    systolic_pressure: int
+    diastolic_pressure: int
 
 class heart_data(BaseModel):
     id: int
