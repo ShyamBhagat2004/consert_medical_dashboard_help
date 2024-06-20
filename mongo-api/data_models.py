@@ -18,20 +18,20 @@ class Patient_data(BaseModel):
 
 class start_of_cycle_info(BaseModel):
     id: int
-    date: str
+    datetime: str
     hospitalisation_day: int
     post_surgery_day: int
 
 class end_of_cycle_info(BaseModel):
     id: int
-    date: str
+    datetime: str
     fluid_loss: int
     fluid_gain: int
     fluid_diff: int
 
 class lines(BaseModel):
     id: int
-    date: str
+    datetime: str
     line: str
     No: str
     placement_date: str
@@ -39,7 +39,7 @@ class lines(BaseModel):
 
 class graph_data(BaseModel):
     id: int
-    timestamp: str
+    datetime: str
     AN: int
     Θ: float
     ΑΠΣΦ: int
@@ -48,50 +48,45 @@ class graph_data(BaseModel):
 
 class heart_data(BaseModel):
     id: int
-    date: str
-    time: str
-    CVP: int
-    PAP: int
-    PWP: int
-    CO: int
-    ICP: int
+    datetime: str
+    CVP: int | None = None
+    PAP: int | None = None
+    PWP: int | None = None
+    CO: int | None = None
+    ICP: int | None = None
 
 class respiratory_data(BaseModel):
     id: int
-    date: str
-    time: str
-    respiration_type: str
-    VT: int
-    RR: int
-    PEEP: int
-    FiO2: int
-    maskO2: str
+    datetime: str
+    respiration_type: str | None = None
+    VT: int | None = None
+    RR: int | None = None
+    PEEP: int | None = None
+    FiO2: int | None = None
+    maskO2: str | None = None
 
 class blood_gasses(BaseModel):
     id: int
-    date: str
-    time: str
-    pH: float
-    PaO2: float
-    PaCO2: float
-    HCO3: float
-    SatO2: float | str
-    BE: float
+    datetime: str
+    pH: float | None = None
+    PaO2: float | None = None
+    PaCO2: float | None = None
+    HCO3: float | None = None
+    SatO2: float | str | None = None
+    BE: float | None = None
 
 class expelled_fluids(BaseModel):
     id: int
-    date: str
-    time: str
-    urine: int | float
-    levin: int | float
-    paroxeteushA: int | float
-    paroxeteushB: int | float
-    lost_fluid_sum: int | float
+    datetime: str
+    urine: int | float | None = None
+    levin: int | float | None = None
+    paroxeteushA: int | float | None = None
+    paroxeteushB: int | float | None = None
+    lost_fluid_sum: int | float | None = None
 
 class need_only_data(BaseModel):
     id: int
-    date: str
-    time: str
+    datetime: str
     aimatokritis: str | None = None
     aimosfairinh: float | None = None
     lefka: float | None = None
