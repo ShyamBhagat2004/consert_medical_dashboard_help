@@ -40,11 +40,11 @@ class lines(BaseModel):
 class graph_data(BaseModel):
     id: int
     datetime: str
-    AN: int
-    Θ: float
-    ΑΠΣΦ: int
-    systolic_pressure: int
-    diastolic_pressure: int
+    temperature: float
+    bloodPressure: float
+    bloodOxygen: int
+    # systolic_pressure: int
+    # diastolic_pressure: int
 
 class heart_data(BaseModel):
     id: int
