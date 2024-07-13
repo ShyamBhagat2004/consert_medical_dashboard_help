@@ -12,7 +12,7 @@ mongo_host = os.getenv("MONGO_HOST")
 mongo_port = os.getenv("MONGO_PORT")
 mongo_url = os.getenv("MONGO_URL")
 
-# If MONGO_URL is not provided, construct it
+# If MONGO_URL is not provided, construct it. ef
 if not mongo_url:
     mongo_url = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:{mongo_port}/"
 
