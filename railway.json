@@ -1,23 +1,15 @@
 {
-    "builds": [
-      {
-        "src": "mongo-api/",
-        "use": "@railway/buildpack",
-        "cmd": "pip install -r requirements.txt"
-      },
-      {
-        "src": "front_end/",
-        "use": "@railway/npm",
-        "cmd": "npm install && npm run build"
-      }
-    ],
-    "deploy": {
-      "api": {
-        "start": "uvicorn api:app --host 0.0.0.0 --port 8000"
-      },
-      "frontend": {
-        "start": "serve -s build"
-      }
-    }
+  "build": {
+    "builder": "heroku/buildpacks:20"
+  },
+  "deploy": {
+    "startCommand": "uvicorn api:app --host 0.0.0.0 --port $PORT"
+  },
+  "envs": {
+    "MONGO_USER": "{{ MongoDB.MONGOUSER }}",
+    "MONGO_PASSWORD": "{{ MongoDB.MONGOPASSWORD }}",
+    "MONGO_HOST": "{{ MongoDB.MONGOHOST }}",
+    "MONGO_PORT": "{{ MongoDB.MONGOPORT }}",
+    "MONGO_URL": "{{ MongoDB.MONGO_URL }}"
   }
-  
+}
