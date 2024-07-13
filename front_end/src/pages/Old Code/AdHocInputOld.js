@@ -1,40 +1,31 @@
-import {Alert, Box, Container, Paper, Typography,} from "@mui/material";
+import {Alert, Box, Container, Typography,  FormControl,
+    InputLabel, Select, MenuItem} from "@mui/material";
 import axios from 'axios';
 import React, { useEffect, useState } from "react";
-import PatientSearch from '../components/PatientSearch';
-import PatientDetails from '../components/PatientDetails';
-import VitalsInput from '../components/VitalsInput';
-import SubmitButton from '../components/SubmitButton';
-import InputModeToggle from '../components/InputModeToggle';
-import CategoryToggle from '../components/CategoryToggle';
-import { validateInput, formatDateTime, formatTime } from '../components/utils';
+import PatientSearch from '../../components/PatientSearch';
+import PatientDetails from '../../components/PatientDetails';
+import VitalsInput from '../../components/VitalsInput';
+import SubmitButton from '../../components/SubmitButton';
+import InputModeToggle from '../../components/InputModeToggle';
+import { validateInput, formatTime, formatAHDateTime } from '../../components/utils';
 
-const HourlyInput = () => {
+const AdHocInputOld = () => {
   const [inputMode, setInputMode] = useState("keyboard");
-  const [selectedCategory, setSelectedCategory] = useState('graph_data');
+  const [temperatureError, setTemperatureError] = useState("");
+  const [bloodPressureError, setBloodPressureError] = useState("");
+  const [bloodOxygenError, setBloodOxygenError] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [submitError, setSubmitError] = useState(false);
   const [formData, setFormData] = useState({
     id: "",
     datetime: "",
-    // graph_data
     temperature: "",
     bloodPressure: "",
     bloodOxygen: "",
     temperatureImage: null,
     bloodPressureImage: null,
     bloodOxygenImage: null,
-    // heart_data
-    CVP: "",
-    PAP: "",
-    PWP: "",
-    CO: "",
-    ICP: "",
-    CVPImage: null,
-    PAPImage: null,
-    PWPImage: null,
-    COImage: null,
-    ICPImage: null,
+    selectedHour: new Date().getHours(),
   });
 
   const [patientId, setPatientId] = useState(localStorage.getItem("patientId") || ""); 
@@ -42,18 +33,6 @@ const HourlyInput = () => {
   const [patientDetails, setPatientDetails] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [searchError, setSearchError] = useState("");
-
-    //graph_data
-    const [temperatureError, setTemperatureError] = useState("");
-    const [bloodPressureError, setBloodPressureError] = useState("");
-    const [bloodOxygenError, setBloodOxygenError] = useState("");
-    //heart_data
-    const [CVPError, setCVPError] = useState("");
-    const [PAPError, setPAPError] = useState("");
-    const [PWPError, setPWPError] = useState("");
-    const [COError, setCOError] = useState("");
-    const [ICPError, setICPError] = useState("");
-  
 
 
   const handleInputChange = (e) => {
@@ -81,6 +60,10 @@ const HourlyInput = () => {
   const handlePatientIdChange = (e) => {
     setPatientId(e.target.value);
     setFormData({ ...formData, id: e.target.value });
+  };
+
+  const handleHourChange = (e) => {
+    setFormData({ ...formData, selectedHour: e.target.value });
   };
 
   const handlePatientIdSearch = async () => {
@@ -116,9 +99,9 @@ const HourlyInput = () => {
   useEffect(() => {
     setFormData(prevFormData => ({
       ...prevFormData,
-      datetime: formatDateTime(currentTime)
+      datetime: formatAHDateTime(currentTime, formData.selectedHour)
     }));
-  }, [currentTime]);
+  }, [currentTime, formData.selectedHour]);
 
   // Update localStorage whenever patientId changes
   useEffect(() => {
@@ -214,7 +197,7 @@ const HourlyInput = () => {
             textAlign: "left",
           }}
         >
-          Hourly Patient Vitals Data Input
+          AdHoc Patient Vitals Data Input
         </Typography>
         
         <PatientSearch
@@ -232,7 +215,6 @@ const HourlyInput = () => {
             <Alert severity="success">Success! Details Populated</Alert>
             
             <PatientDetails patientFound={patientFound} patientDetails={patientDetails} />
-
             
             {patientFound && (
               <>
@@ -265,33 +247,46 @@ const HourlyInput = () => {
                       {formatTime(currentTime)}
                     </Typography>
                   </Box>
-                  <Box sx={{ display: "flex", gap: "5px" }}>
-                    <Typography
-                      sx={{
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "22.4px",
-                        color: "black",
-                        textAlign: "center",
-                      }}
-                    >
-                      Logging for hour:
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "22.4px",
-                        color: "black",
-                        textAlign: "center",
-                      }}
-                    >
-                      {new Date().getHours()}:00
-                    </Typography>
-                  </Box>
+                  <Box sx={{ display: "flex", gap: "10px", marginTop: "5px" }}>
+                        <Typography
+                        sx={{
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "22.4px",
+                            color: "black",
+                            textAlign: "center",
+                        }}
+                        >
+                        Logging for hour:
+                        </Typography>
+                        <FormControl sx={{ width: 100 }}>
+                        <InputLabel sx={{ height: 25 }} labelId="selHour">
+                            Hour
+                        </InputLabel>
+                        <Select
+                            label="Hour"
+                            labelId="selHour"
+                            value={formData.selectedHour}
+                            onChange={handleHourChange}
+                            sx={{
+                            height: 25,
+                            "& .MuiSelect-select": {
+                                height: 25,
+                                minHeight: 25,
+                                display: "flex",
+                                alignItems: "center",
+                            },
+                            }}
+                        >
+                            {Array.from({ length: 24 }).map((_, index) => (
+                            <MenuItem key={index} value={index}>
+                                {index.toString().padStart(2,'0')}:00
+                            </MenuItem>
+                            ))}
+                        </Select>
+                        </FormControl>
+                    </Box>
                 </Box>
-
-                <CategoryToggle selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
                 <InputModeToggle inputMode={inputMode} setInputMode={setInputMode} />
 
@@ -308,7 +303,6 @@ const HourlyInput = () => {
                   handleSubmit={handleSubmit}
                   successMessage={successMessage}
                   submitError={submitError}
-                  selectedHour={new Date().getHours()}
                 />
               </>
             )}
@@ -319,4 +313,4 @@ const HourlyInput = () => {
   );
 };
 
-export default HourlyInput;
+export default AdHocInputOld;

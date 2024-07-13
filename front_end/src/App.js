@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HourlyInput from "../src/pages/HourlyInput";
 import AdHocInput from "../src/pages/AdHocInput";
+import SummaryData from "../src/pages/SummaryData";
 import { Box } from "@mui/material";
 
 const App = () => {
@@ -20,21 +21,30 @@ const App = () => {
         >
           <Box>
             <Link
-              to="/summary"
+              to="/summary_data"
               style={{
                 textDecoration: "none",
                 fontSize: { sm: "20px", xs: "14px" },
                 fontWeight: 600,
-                color: "#C0C0C0",
-                pointerEvents: "none",
+                color: "black",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+              onMouseOver={(e) => {
+                e.target.style.color = "#FF6347"; // Change color on hover
+                e.target.style.transform = "scale(1.1)"; // Slightly enlarge on hover
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = "black"; // Revert color
+                e.target.style.transform = "scale(1)"; // Revert size
               }}
             >
-              Summary
+              Summary Data
             </Link>
           </Box>
           <Box>
             <Link
-              to="/"
+              to="/hourly_input"
               style={{
                 textDecoration: "none",
                 fontSize: { sm: "20px", xs: "14px" },
@@ -57,7 +67,7 @@ const App = () => {
           </Box>
           <Box>
             <Link
-              to="/adhoc"
+              to="/adhoc_input"
               style={{
                 textDecoration: "none",
                 fontSize: { sm: "20px", xs: "14px" },
@@ -82,7 +92,10 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<HourlyInput />} />
-          <Route path="/adhoc" element={<AdHocInput />} />
+          <Route path="/hourly_input" element={<HourlyInput />} />
+          <Route path="/adhoc_input" element={<AdHocInput />} />
+          <Route path="/summary_data" element={<SummaryData />} />
+
         </Routes>
       </div>
     </Router>
