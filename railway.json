@@ -3,7 +3,7 @@
       {
         "src": "mongo-api/",
         "use": "@railway/buildpack",
-        "cmd": "pip install -r requirements.txt"
+        "cmd": "pip install -r mongo-api/requirements.txt"
       },
       {
         "src": "front_end/",
