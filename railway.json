@@ -11,15 +11,13 @@
         "cmd": "npm install && npm run build"
       }
     ],
-    "deploy": [
-      {
-        "service": "api",
+    "deploy": {
+      "api": {
         "start": "uvicorn api:app --host 0.0.0.0 --port $PORT"
       },
-      {
-        "service": "frontend",
+      "frontend": {
         "start": "serve -s build"
       }
-    ]
+    }
   }
   
