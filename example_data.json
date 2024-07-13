@@ -1,0 +1,682 @@
+{
+    "graph1": [
+        {
+            "2024-06-11 00:00": {
+                "AN": 35,
+                "Temperature": 39,
+                "AP_SF": 96,
+                "LowerVal": 11,
+                "HigherVal": 99
+            },
+            "2024-06-11 01:00": {
+                "AN": 33,
+                "Temperature": 36,
+                "AP_SF": 54,
+                "LowerVal": 84,
+                "HigherVal": 84
+            },
+            "2024-06-11 02:00": {
+                "AN": 17,
+                "Temperature": 38,
+                "AP_SF": 180,
+                "LowerVal": 79,
+                "HigherVal": 94
+            },
+            "2024-06-11 03:00": {
+                "AN": 35,
+                "Temperature": 37,
+                "AP_SF": 85,
+                "LowerVal": 55,
+                "HigherVal": 98
+            },
+            "2024-06-11 04:00": {
+                "AN": 18,
+                "Temperature": 41,
+                "AP_SF": 169,
+                "LowerVal": 52,
+                "HigherVal": 95
+            },
+            "2024-06-11 05:00": {
+                "AN": 13,
+                "Temperature": 40,
+                "AP_SF": 116,
+                "LowerVal": 68,
+                "HigherVal": 59
+            },
+            "2024-06-11 06:00": {
+                "AN": 21,
+                "Temperature": 37,
+                "AP_SF": 113,
+                "LowerVal": 88,
+                "HigherVal": 55
+            },
+            "2024-06-11 07:00": {
+                "AN": 18,
+                "Temperature": 35,
+                "AP_SF": 157,
+                "LowerVal": 72,
+                "HigherVal": 58
+            },
+            "2024-06-11 08:00": {
+                "AN": 34,
+                "Temperature": 41,
+                "AP_SF": 143,
+                "LowerVal": 82,
+                "HigherVal": 52
+            },
+            "2024-06-11 09:00": {
+                "AN": 35,
+                "Temperature": 38,
+                "AP_SF": 130,
+                "LowerVal": 2,
+                "HigherVal": 79
+            },
+            "2024-06-11 10:00": {
+                "AN": 16,
+                "Temperature": 37,
+                "AP_SF": 81,
+                "LowerVal": 30,
+                "HigherVal": 83
+            },
+            "2024-06-11 11:00": {
+                "AN": 26,
+                "Temperature": 37,
+                "AP_SF": 167,
+                "LowerVal": 9,
+                "HigherVal": 89
+            },
+            "2024-06-11 12:00": {
+                "AN": 16,
+                "Temperature": 35,
+                "AP_SF": 116,
+                "LowerVal": 47,
+                "HigherVal": 23
+            },
+            "2024-06-11 13:00": {
+                "AN": 33,
+                "Temperature": 41,
+                "AP_SF": 146,
+                "LowerVal": 23,
+                "HigherVal": 37
+            },
+            "2024-06-11 14:00": {
+                "AN": 26,
+                "Temperature": 39,
+                "AP_SF": 136,
+                "LowerVal": 38,
+                "HigherVal": 31
+            },
+            "2024-06-11 15:00": {
+                "AN": 23,
+                "Temperature": 40,
+                "AP_SF": 87,
+                "LowerVal": 10,
+                "HigherVal": 80
+            },
+            "2024-06-11 16:00": {
+                "AN": 13,
+                "Temperature": 37,
+                "AP_SF": 85,
+                "LowerVal": 49,
+                "HigherVal": 15
+            },
+            "2024-06-11 17:00": {
+                "AN": 25,
+                "Temperature": 39,
+                "AP_SF": 191,
+                "LowerVal": 28,
+                "HigherVal": 36
+            },
+            "2024-06-11 18:00": {
+                "AN": 19,
+                "Temperature": 35,
+                "AP_SF": 71,
+                "LowerVal": 95,
+                "HigherVal": 4
+            },
+            "2024-06-11 19:00": {
+                "AN": 12,
+                "Temperature": 39,
+                "AP_SF": 185,
+                "LowerVal": 79,
+                "HigherVal": 16
+            },
+            "2024-06-11 20:00": {
+                "AN": 13,
+                "Temperature": 36,
+                "AP_SF": 154,
+                "LowerVal": 66,
+                "HigherVal": 8
+            },
+            "2024-06-11 21:00": {
+                "AN": 23,
+                "Temperature": 37,
+                "AP_SF": 200,
+                "LowerVal": 57,
+                "HigherVal": 19
+            },
+            "2024-06-11 22:00": {
+                "AN": 26,
+                "Temperature": 35,
+                "AP_SF": 162,
+                "LowerVal": 55,
+                "HigherVal": 75
+            },
+            "2024-06-11 23:00": {
+                "AN": 14,
+                "Temperature": 35,
+                "AP_SF": 119,
+                "LowerVal": 61,
+                "HigherVal": 76
+            },
+            "2024-06-10 00:00": {
+                "AN": 20,
+                "Temperature": 35,
+                "AP_SF": 104,
+                "LowerVal": 24,
+                "HigherVal": 90
+            },
+            "2024-06-10 01:00": {
+                "AN": 25,
+                "Temperature": 35,
+                "AP_SF": 54,
+                "LowerVal": 11,
+                "HigherVal": 93
+            },
+            "2024-06-10 02:00": {
+                "AN": 11,
+                "Temperature": 40,
+                "AP_SF": 92,
+                "LowerVal": 58,
+                "HigherVal": 47
+            },
+            "2024-06-10 03:00": {
+                "AN": 15,
+                "Temperature": 35,
+                "AP_SF": 61,
+                "LowerVal": 98,
+                "HigherVal": 50
+            },
+            "2024-06-10 04:00": {
+                "AN": 16,
+                "Temperature": 41,
+                "AP_SF": 87,
+                "LowerVal": 67,
+                "HigherVal": 25
+            },
+            "2024-06-10 05:00": {
+                "AN": 22,
+                "Temperature": 35,
+                "AP_SF": 159,
+                "LowerVal": 53,
+                "HigherVal": 95
+            },
+            "2024-06-10 06:00": {
+                "AN": 31,
+                "Temperature": 40,
+                "AP_SF": 139,
+                "LowerVal": 14,
+                "HigherVal": 44
+            },
+            "2024-06-10 07:00": {
+                "AN": 32,
+                "Temperature": 41,
+                "AP_SF": 178,
+                "LowerVal": 40,
+                "HigherVal": 13
+            },
+            "2024-06-10 08:00": {
+                "AN": 15,
+                "Temperature": 35,
+                "AP_SF": 129,
+                "LowerVal": 98,
+                "HigherVal": 4
+            },
+            "2024-06-10 09:00": {
+                "AN": 12,
+                "Temperature": 35,
+                "AP_SF": 122,
+                "LowerVal": 59,
+                "HigherVal": 91
+            },
+            "2024-06-10 10:00": {
+                "AN": 31,
+                "Temperature": 39,
+                "AP_SF": 82,
+                "LowerVal": 56,
+                "HigherVal": 32
+            },
+            "2024-06-10 11:00": {
+                "AN": 29,
+                "Temperature": 35,
+                "AP_SF": 75,
+                "LowerVal": 29,
+                "HigherVal": 51
+            },
+            "2024-06-10 12:00": {
+                "AN": 21,
+                "Temperature": 36,
+                "AP_SF": 178,
+                "LowerVal": 80,
+                "HigherVal": 40
+            },
+            "2024-06-10 13:00": {
+                "AN": 25,
+                "Temperature": 36,
+                "AP_SF": 112,
+                "LowerVal": 55,
+                "HigherVal": 1
+            },
+            "2024-06-10 14:00": {
+                "AN": 28,
+                "Temperature": 36,
+                "AP_SF": 94,
+                "LowerVal": 82,
+                "HigherVal": 11
+            },
+            "2024-06-10 15:00": {
+                "AN": 10,
+                "Temperature": 41,
+                "AP_SF": 108,
+                "LowerVal": 37,
+                "HigherVal": 57
+            },
+            "2024-06-10 16:00": {
+                "AN": 14,
+                "Temperature": 38,
+                "AP_SF": 66,
+                "LowerVal": 98,
+                "HigherVal": 5
+            },
+            "2024-06-10 17:00": {
+                "AN": 13,
+                "Temperature": 38,
+                "AP_SF": 88,
+                "LowerVal": 13,
+                "HigherVal": 87
+            },
+            "2024-06-10 18:00": {
+                "AN": 20,
+                "Temperature": 40,
+                "AP_SF": 64,
+                "LowerVal": 15,
+                "HigherVal": 27
+            },
+            "2024-06-10 19:00": {
+                "AN": 15,
+                "Temperature": 41,
+                "AP_SF": 93,
+                "LowerVal": 16,
+                "HigherVal": 13
+            },
+            "2024-06-10 20:00": {
+                "AN": 31,
+                "Temperature": 37,
+                "AP_SF": 87,
+                "LowerVal": 62,
+                "HigherVal": 79
+            },
+            "2024-06-10 21:00": {
+                "AN": 15,
+                "Temperature": 38,
+                "AP_SF": 74,
+                "LowerVal": 35,
+                "HigherVal": 45
+            },
+            "2024-06-10 22:00": {
+                "AN": 23,
+                "Temperature": 36,
+                "AP_SF": 120,
+                "LowerVal": 58,
+                "HigherVal": 98
+            },
+            "2024-06-10 23:00": {
+                "AN": 26,
+                "Temperature": 41,
+                "AP_SF": 178,
+                "LowerVal": 21,
+                "HigherVal": 47
+            }
+        }
+    ],
+    "graph2": [
+        {
+            "2024-06-11 00:00": {
+                "AN": 35,
+                "Temperature": 39,
+                "AP_SF": 96,
+                "LowerVal": 11,
+                "HigherVal": 99
+            },
+            "2024-06-11 01:00": {
+                "AN": 33,
+                "Temperature": 36,
+                "AP_SF": 54,
+                "LowerVal": 84,
+                "HigherVal": 84
+            },
+            "2024-06-11 02:00": {
+                "AN": 17,
+                "Temperature": 38,
+                "AP_SF": 180,
+                "LowerVal": 79,
+                "HigherVal": 94
+            },
+            "2024-06-11 03:00": {
+                "AN": 35,
+                "Temperature": 37,
+                "AP_SF": 85,
+                "LowerVal": 55,
+                "HigherVal": 98
+            },
+            "2024-06-11 04:00": {
+                "AN": 18,
+                "Temperature": 41,
+                "AP_SF": 169,
+                "LowerVal": 52,
+                "HigherVal": 95
+            },
+            "2024-06-11 05:00": {
+                "AN": 13,
+                "Temperature": 40,
+                "AP_SF": 116,
+                "LowerVal": 68,
+                "HigherVal": 59
+            },
+            "2024-06-11 06:00": {
+                "AN": 21,
+                "Temperature": 37,
+                "AP_SF": 113,
+                "LowerVal": 88,
+                "HigherVal": 55
+            },
+            "2024-06-11 07:00": {
+                "AN": 18,
+                "Temperature": 35,
+                "AP_SF": 157,
+                "LowerVal": 72,
+                "HigherVal": 58
+            },
+            "2024-06-11 08:00": {
+                "AN": 34,
+                "Temperature": 41,
+                "AP_SF": 143,
+                "LowerVal": 82,
+                "HigherVal": 52
+            },
+            "2024-06-11 09:00": {
+                "AN": 35,
+                "Temperature": 38,
+                "AP_SF": 130,
+                "LowerVal": 2,
+                "HigherVal": 79
+            },
+            "2024-06-11 10:00": {
+                "AN": 16,
+                "Temperature": 37,
+                "AP_SF": 81,
+                "LowerVal": 30,
+                "HigherVal": 83
+            },
+            "2024-06-11 11:00": {
+                "AN": 26,
+                "Temperature": 37,
+                "AP_SF": 167,
+                "LowerVal": 9,
+                "HigherVal": 89
+            },
+            "2024-06-11 12:00": {
+                "AN": 16,
+                "Temperature": 35,
+                "AP_SF": 116,
+                "LowerVal": 47,
+                "HigherVal": 23
+            },
+            "2024-06-11 13:00": {
+                "AN": 33,
+                "Temperature": 41,
+                "AP_SF": 146,
+                "LowerVal": 23,
+                "HigherVal": 37
+            },
+            "2024-06-11 14:00": {
+                "AN": 26,
+                "Temperature": 39,
+                "AP_SF": 136,
+                "LowerVal": 38,
+                "HigherVal": 31
+            },
+            "2024-06-11 15:00": {
+                "AN": 23,
+                "Temperature": 40,
+                "AP_SF": 87,
+                "LowerVal": 10,
+                "HigherVal": 80
+            },
+            "2024-06-11 16:00": {
+                "AN": 13,
+                "Temperature": 37,
+                "AP_SF": 85,
+                "LowerVal": 49,
+                "HigherVal": 15
+            },
+            "2024-06-11 17:00": {
+                "AN": 25,
+                "Temperature": 39,
+                "AP_SF": 191,
+                "LowerVal": 28,
+                "HigherVal": 36
+            },
+            "2024-06-11 18:00": {
+                "AN": 19,
+                "Temperature": 35,
+                "AP_SF": 71,
+                "LowerVal": 95,
+                "HigherVal": 4
+            },
+            "2024-06-11 19:00": {
+                "AN": 12,
+                "Temperature": 39,
+                "AP_SF": 185,
+                "LowerVal": 79,
+                "HigherVal": 16
+            },
+            "2024-06-11 20:00": {
+                "AN": 13,
+                "Temperature": 36,
+                "AP_SF": 154,
+                "LowerVal": 66,
+                "HigherVal": 8
+            },
+            "2024-06-11 21:00": {
+                "AN": 23,
+                "Temperature": 37,
+                "AP_SF": 200,
+                "LowerVal": 57,
+                "HigherVal": 19
+            },
+            "2024-06-11 22:00": {
+                "AN": 26,
+                "Temperature": 35,
+                "AP_SF": 162,
+                "LowerVal": 55,
+                "HigherVal": 75
+            },
+            "2024-06-11 23:00": {
+                "AN": 14,
+                "Temperature": 35,
+                "AP_SF": 119,
+                "LowerVal": 61,
+                "HigherVal": 76
+            },
+            "2024-06-10 00:00": {
+                "AN": 20,
+                "Temperature": 35,
+                "AP_SF": 104,
+                "LowerVal": 24,
+                "HigherVal": 90
+            },
+            "2024-06-10 01:00": {
+                "AN": 25,
+                "Temperature": 35,
+                "AP_SF": 54,
+                "LowerVal": 11,
+                "HigherVal": 93
+            },
+            "2024-06-10 02:00": {
+                "AN": 11,
+                "Temperature": 40,
+                "AP_SF": 92,
+                "LowerVal": 58,
+                "HigherVal": 47
+            },
+            "2024-06-10 03:00": {
+                "AN": 15,
+                "Temperature": 35,
+                "AP_SF": 61,
+                "LowerVal": 98,
+                "HigherVal": 50
+            },
+            "2024-06-10 04:00": {
+                "AN": 16,
+                "Temperature": 41,
+                "AP_SF": 87,
+                "LowerVal": 67,
+                "HigherVal": 25
+            },
+            "2024-06-10 05:00": {
+                "AN": 22,
+                "Temperature": 35,
+                "AP_SF": 159,
+                "LowerVal": 53,
+                "HigherVal": 95
+            },
+            "2024-06-10 06:00": {
+                "AN": 31,
+                "Temperature": 40,
+                "AP_SF": 139,
+                "LowerVal": 14,
+                "HigherVal": 44
+            },
+            "2024-06-10 07:00": {
+                "AN": 32,
+                "Temperature": 41,
+                "AP_SF": 178,
+                "LowerVal": 40,
+                "HigherVal": 13
+            },
+            "2024-06-10 08:00": {
+                "AN": 15,
+                "Temperature": 35,
+                "AP_SF": 129,
+                "LowerVal": 98,
+                "HigherVal": 4
+            },
+            "2024-06-10 09:00": {
+                "AN": 12,
+                "Temperature": 35,
+                "AP_SF": 122,
+                "LowerVal": 59,
+                "HigherVal": 91
+            },
+            "2024-06-10 10:00": {
+                "AN": 31,
+                "Temperature": 39,
+                "AP_SF": 82,
+                "LowerVal": 56,
+                "HigherVal": 32
+            },
+            "2024-06-10 11:00": {
+                "AN": 29,
+                "Temperature": 35,
+                "AP_SF": 75,
+                "LowerVal": 29,
+                "HigherVal": 51
+            },
+            "2024-06-10 12:00": {
+                "AN": 21,
+                "Temperature": 36,
+                "AP_SF": 178,
+                "LowerVal": 80,
+                "HigherVal": 40
+            },
+            "2024-06-10 13:00": {
+                "AN": 25,
+                "Temperature": 36,
+                "AP_SF": 112,
+                "LowerVal": 55,
+                "HigherVal": 1
+            },
+            "2024-06-10 14:00": {
+                "AN": 28,
+                "Temperature": 36,
+                "AP_SF": 94,
+                "LowerVal": 82,
+                "HigherVal": 11
+            },
+            "2024-06-10 15:00": {
+                "AN": 10,
+                "Temperature": 41,
+                "AP_SF": 108,
+                "LowerVal": 37,
+                "HigherVal": 57
+            },
+            "2024-06-10 16:00": {
+                "AN": 14,
+                "Temperature": 38,
+                "AP_SF": 66,
+                "LowerVal": 98,
+                "HigherVal": 5
+            },
+            "2024-06-10 17:00": {
+                "AN": 13,
+                "Temperature": 38,
+                "AP_SF": 88,
+                "LowerVal": 13,
+                "HigherVal": 87
+            },
+            "2024-06-10 18:00": {
+                "AN": 20,
+                "Temperature": 40,
+                "AP_SF": 64,
+                "LowerVal": 15,
+                "HigherVal": 27
+            },
+            "2024-06-10 19:00": {
+                "AN": 15,
+                "Temperature": 41,
+                "AP_SF": 93,
+                "LowerVal": 16,
+                "HigherVal": 13
+            },
+            "2024-06-10 20:00": {
+                "AN": 31,
+                "Temperature": 37,
+                "AP_SF": 87,
+                "LowerVal": 62,
+                "HigherVal": 79
+            },
+            "2024-06-10 21:00": {
+                "AN": 15,
+                "Temperature": 38,
+                "AP_SF": 74,
+                "LowerVal": 35,
+                "HigherVal": 45
+            },
+            "2024-06-10 22:00": {
+                "AN": 23,
+                "Temperature": 36,
+                "AP_SF": 120,
+                "LowerVal": 58,
+                "HigherVal": 98
+            },
+            "2024-06-10 23:00": {
+                "AN": 26,
+                "Temperature": 41,
+                "AP_SF": 178,
+                "LowerVal": 21,
+                "HigherVal": 47
+            }
+        }
+    ]
+}
