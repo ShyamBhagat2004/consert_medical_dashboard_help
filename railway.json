@@ -2,10 +2,24 @@
     "builds": [
       {
         "src": "mongo-api/",
-        "use": "@railway/buildpack"
+        "use": "@railway/buildpack",
+        "cmd": "pip install -r requirements.txt"
+      },
+      {
+        "src": "front_end/",
+        "use": "@railway/npm",
+        "cmd": "npm install && npm run build"
       }
     ],
-    "deploy": {
-      "start": "uvicorn api:app --host 0.0.0.0 --port $PORT"
-    }
+    "deploy": [
+      {
+        "service": "api",
+        "start": "uvicorn api:app --host 0.0.0.0 --port $PORT"
+      },
+      {
+        "service": "frontend",
+        "start": "serve -s build"
+      }
+    ]
   }
+  

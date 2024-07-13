@@ -1,9 +1,26 @@
+import os
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from mongoconnect.mongoconnect import MongoConnector
+from pymongo import MongoClient
 from data_models import Patient_data, start_of_cycle_info, end_of_cycle_info, need_only_data, graph_data, heart_data, respiratory_data, blood_gasses, expelled_fluids
 
-mongo = MongoConnector("icudb", "localhost", 27017)
+
+mongo_user = os.getenv("MONGO_USER")
+mongo_password = os.getenv("MONGO_PASSWORD")
+mongo_host = os.getenv("MONGO_HOST")
+mongo_port = os.getenv("MONGO_PORT")
+mongo_url = os.getenv("MONGO_URL")
+
+# If MONGO_URL is not provided, construct it
+if not mongo_url:
+    mongo_url = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:{mongo_port}/"
+
+client = MongoClient(mongo_url)
+db = client.icudb
+
+
+#mongo = MongoConnector("icudb", "localhost", 27017)
 app = FastAPI()
 
 # Allow CORS
