@@ -1,45 +1,26 @@
 import os
-import logging
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pymongo import MongoClient
 from mongoconnect.mongoconnect import MongoConnector
-from data_models import (
-    Patient_data, start_of_cycle_info, end_of_cycle_info, need_only_data, graph_data, 
-    heart_data, respiratory_data, blood_gasses, expelled_fluids
-)
+from pymongo import MongoClient
+from data_models import Patient_data, start_of_cycle_info, end_of_cycle_info, need_only_data, graph_data, heart_data, respiratory_data, blood_gasses, expelled_fluids
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
-# Retrieve environment variables
 mongo_user = os.getenv("MONGO_USER")
 mongo_password = os.getenv("MONGO_PASSWORD")
 mongo_host = os.getenv("MONGO_HOST")
 mongo_port = os.getenv("MONGO_PORT")
 mongo_url = os.getenv("MONGO_URL")
 
-# Log environment variables (be careful with sensitive information)
-logger.info(f"MONGO_USER: {mongo_user}")
-logger.info(f"MONGO_HOST: {mongo_host}")
-logger.info(f"MONGO_PORT: {mongo_port}")
-logger.info(f"MONGO_URL: {mongo_url}")
-
-# If MONGO_URL is not provided, construct it
+# If MONGO_URL is not provided, construct it. ef
 if not mongo_url:
     mongo_url = f"mongodb://{mongo_user}:{mongo_password}@{mongo_host}:{mongo_port}/"
-    logger.info(f"Constructed MONGO_URL: {mongo_url}")
 
-try:
-    client = MongoClient(mongo_url)
-    db = client.icudb
-    logger.info("Successfully connected to MongoDB")
-except Exception as e:
-    logger.error(f"Failed to connect to MongoDB: {e}")
-    raise
+client = MongoClient(mongo_url)
+db = client.icudb
 
-mongo = MongoConnector("icudb", mongo_url)
+
+mongo = MongoConnector("icudb", mongo_host, mongo_port)
 app = FastAPI()
 
 # Allow CORS
@@ -56,37 +37,113 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Root node
+# root node
 @app.get("/")
 async def root():
     return {"status": "ok"}
 
-# Get patient data
+# get patient data
 @app.get("/patient_data/{pid}")
 async def get_patient_info(pid: int):
-    logger.info(f"Fetching patient data for ID: {pid}")
-    try:
-        data = mongo.get_patient_data(pid)
-        if not data:
-            logger.warning(f"Patient ID {pid} not found")
-            raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
-        logger.info(f"Successfully retrieved patient data for ID: {pid}")
-        return data
-    except Exception as e:
-        logger.error(f"Failed to fetch patient data for ID {pid}: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    data = mongo.get_patient_data(pid)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
 
-# Post patient data
+# post patient data
 @app.post("/patient_data/")
 async def post_patient_info(item: Patient_data):
-    logger.info(f"Posting patient data: {item}")
-    try:
-        mongo.post_patient_data(item)
-        logger.info("Patient data posted successfully")
-        return item
-    except Exception as e:
-        logger.error(f"Failed to post patient data: {e}")
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    mongo.post_patient_data(item)
+    return item
 
-# Similar updates for other endpoints...
+# get patient graph data
+@app.get("/graph_data/{pid}")
+async def get_graph_data(pid: int, start_time = Query(None), end_time = Query(None)):
+    data = mongo.get_graph_data(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
 
+# post patient graph data
+@app.post("/graph_data")
+async def post_graph_data(item: graph_data):
+    mongo.post_graph_data(item)
+    return item
+
+# get start of cycle patient info
+@app.get("/start_of_cycle_info/{pid}")
+async def get_start_of_cycle_info(pid: int, start_time = Query(None), end_time = Query(None)):
+    data =  mongo.get_start_of_cycle_info(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post start of cycle patient info
+@app.post("/start_of_cycle_info")
+async def post_start_of_cycle_info(item: start_of_cycle_info):
+    return mongo.post_start_of_cycle_info(item)
+
+# get end of cycle patient info
+@app.get("/end_of_cycle_info/{pid}")
+async def get_end_of_cycle_info(pid: int, start_time = Query(None), end_time = Query(None)):
+    data = mongo.get_end_of_cycle_info(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post end of cycle patient info
+@app.post("/end_of_cycle_info")
+async def post_end_of_cycle_info(item: end_of_cycle_info):
+    return mongo.post_end_of_cycle_info(item)
+
+# get patient heart data
+@app.get("/heart_data/{pid}")
+async def get_heart_data(pid: int, start_time = Query(None), end_time = Query(None)):
+    data =  mongo.get_heart_data(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post patient heart data
+@app.post("/heart_data")
+async def post_heart_data(item: heart_data):
+    return mongo.post_heart_data(item)
+
+# get patient respiratory data
+@app.get("/respiratory_data/{pid}")
+async def get_respiratory_data(pid: int, start_time = Query(None), end_time = Query(None)):
+    data = mongo.get_respiratory_data(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post patient respiratory data
+@app.post("/respiratory_data")
+async def post_respiratory_data(item: respiratory_data):
+    return mongo.post_respiratory_data(item)
+
+# get patient plood gasses
+@app.get("/blood_gasses/{pid}")
+async def get_blood_gasses(pid: int, start_time = Query(None), end_time = Query(None)):
+    data = mongo.get_blood_gasses(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post patient blood gasses
+@app.post("/blood_gasses")
+async def post_blood_gasses(item: blood_gasses):
+    return mongo.post_blood_gasses(item)
+
+# get patient expelled fluids
+@app.get("/expelled_fluids/{pid}")
+async def get_expelled_fluids(pid: int, start_time = Query(None), end_time = Query(None)):
+    data = mongo.get_expelled_fluids(pid, start_time, end_time)
+    if not data:
+        raise HTTPException(status_code=404, detail=f"patient id:{pid} not found")
+    return data
+
+# post patient expelled fluids
+@app.post("/expelled_fluids")
+async def post_expelled_fluids(item: expelled_fluids):
+    return mongo.post_expelled_fluids(item)

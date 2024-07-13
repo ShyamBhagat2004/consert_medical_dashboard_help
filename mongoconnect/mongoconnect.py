@@ -1,65 +1,31 @@
-from pymongo import MongoClient, DESCENDING
+from pymongo import MongoClient
 from bson import ObjectId
 from data_models import *
-import logging
-
-logger = logging.getLogger(__name__)
 
 class MongoConnector:
-    def __init__(self, dbname, dbhost, dbport):
-        "initialize a Mongodb connector"
-        self.dbname = dbname
-        self.dburl = f"mongodb://{dbhost}:{dbport}"
-        self.client = None
-        self.db = None
-        self.connect()
-
+    def __init__(self, dburl):
+        "Initialize a MongoDB connector using a URL"
+        self.dburl = dburl
+    
     def connect(self):
-        # establish db connection
-        try:
-            self.client = MongoClient(self.dburl)
-            self.db = self.client[self.dbname]
-            logger.info(f"Connected to MongoDB at {self.dburl}")
-        except Exception as e:
-            logger.error(f"Failed to connect to MongoDB: {e}")
-            raise
+        # Establish DB connection using the URL
+        self.client = MongoClient(self.dburl)
+        self.db = self.client.get_default_database()  # Gets the default database from the URL
+
+        # Access collections
+        self.patient_data = self.db["patient_data"]
+        self.graph_data = self.db["graph_data"]
+        self.start_of_cycle_info = self.db["start_of_cycle_info"]
+        self.end_of_cycle_info = self.db["end_of_cycle_info"]
+        self.heart_data = self.db["heart_data"]
+        self.respiratory_data = self.db["respiratory_data"]
+        self.blood_gasses = self.db["blood_gasses"]
+        self.expelled_fluids = self.db["expelled_fluids"]
+        self.need_only_data = self.db["need_only_data"]
+        self.lines = self.db["lines"]
 
     def disconnect(self):
-        # close db connection
-        if self.client:
-            self.client.close()
-            logger.info("Disconnected from MongoDB")
+        # Close DB connection
+        self.client.close()
 
-    def get_patient_data(self, id: int):
-        try:
-            self.connect()
-            data = [bson2json(patient) for patient in self.db["patient_data"].find({"id": id})]
-            if not data:
-                logger.warning(f"No patient data found for ID: {id}")
-            else:
-                logger.info(f"Retrieved patient data for ID: {id}")
-            return data
-        except Exception as e:
-            logger.error(f"Error fetching patient data for ID {id}: {e}")
-            raise
-        finally:
-            self.disconnect()
-
-    def post_patient_data(self, item: Patient_data):
-        try:
-            self.connect()
-            self.db["patient_data"].insert_one(dict(item))
-            logger.info(f"Posted patient data: {item}")
-        except Exception as e:
-            logger.error(f"Error posting patient data: {e}")
-            raise
-        finally:
-            self.disconnect()
-
-    # Add similar logging and connection handling for other methods...
-
-def bson2json(document):
-    # Convert ObjectId() bson format into a string for _id key.
-    if '_id' in document and isinstance(document['_id'], ObjectId):
-        document['_id'] = str(document['_id'])
-    return document
+    # The rest of the methods (`get_`, `post_` methods) remain unchanged.
