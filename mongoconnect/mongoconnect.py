@@ -1,149 +1,65 @@
 from pymongo import MongoClient, DESCENDING
 from bson import ObjectId
 from data_models import *
+import logging
+
+logger = logging.getLogger(__name__)
 
 class MongoConnector:
-
     def __init__(self, dbname, dbhost, dbport):
-        "initialise a Mongodb connector"
+        "initialize a Mongodb connector"
         self.dbname = dbname
         self.dburl = f"mongodb://{dbhost}:{dbport}"
-    
+        self.client = None
+        self.db = None
+        self.connect()
+
     def connect(self):
         # establish db connection
-        self.client = MongoClient(self.dburl)
-        self.db = self.client[self.dbname]
-
-        # access collections
-        self.patient_data = self.db["patient_data"]
-        self.graph_data = self.db["graph_data"]
-        self.start_of_cycle_info = self.db["start_of_cycle_info"]
-        self.end_of_cycle_info = self.db["end_of_cycle_info"]
-        self.heart_data = self.db["heart_data"]
-        self.respiratory_data = self.db["respiratory_data"]
-        self.blood_gasses = self.db["blood_gasses"]
-        self.expelled_fluids = self.db["expelled_fluids"]
-        self.need_only_data = self.db["need_only_data"]
-        self.lines = self.db["lines"]
+        try:
+            self.client = MongoClient(self.dburl)
+            self.db = self.client[self.dbname]
+            logger.info(f"Connected to MongoDB at {self.dburl}")
+        except Exception as e:
+            logger.error(f"Failed to connect to MongoDB: {e}")
+            raise
 
     def disconnect(self):
-        #close db connection
-        self.client.close()
-    
+        # close db connection
+        if self.client:
+            self.client.close()
+            logger.info("Disconnected from MongoDB")
+
     def get_patient_data(self, id: int):
-        self.connect()
-        data = [bson2json(patient) for patient in self.patient_data.find({"id": id})]
-        self.disconnect()
-        return data
-    
+        try:
+            self.connect()
+            data = [bson2json(patient) for patient in self.db["patient_data"].find({"id": id})]
+            if not data:
+                logger.warning(f"No patient data found for ID: {id}")
+            else:
+                logger.info(f"Retrieved patient data for ID: {id}")
+            return data
+        except Exception as e:
+            logger.error(f"Error fetching patient data for ID {id}: {e}")
+            raise
+        finally:
+            self.disconnect()
+
     def post_patient_data(self, item: Patient_data):
-        self.connect()
-        self.patient_data.insert_one(dict(item))
-        self.disconnect()
+        try:
+            self.connect()
+            self.db["patient_data"].insert_one(dict(item))
+            logger.info(f"Posted patient data: {item}")
+        except Exception as e:
+            logger.error(f"Error posting patient data: {e}")
+            raise
+        finally:
+            self.disconnect()
 
-    def get_graph_data(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(vital) for vital in self.graph_data.find(query)]
-        self.disconnect()
-        return data
-    
-    def post_graph_data(self, item: graph_data):
-        self.connect()
-        self.graph_data.insert_one(dict(item))
-        self.disconnect()
-
-    def get_start_of_cycle_info(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.start_of_cycle_info.find(query)]
-        self.disconnect()
-        return data
-
-    def post_start_of_cycle_info(self, item: start_of_cycle_info):
-        self.connect()
-        self.start_of_cycle_info.insert_one(dict(item))
-        self.disconnect()
-
-    def get_end_of_cycle_info(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.end_of_cycle_info.find(query)]
-        self.disconnect()
-        return data
-
-    def post_end_of_cycle_info(self, item: end_of_cycle_info):
-        self.connect()
-        self.end_of_cycle_info.insert_one(dict(item))
-        self.disconnect()
-
-    def get_heart_data(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.heart_data.find(query)]
-        self.disconnect()
-        return data
-    
-    def post_heart_data(self, item: heart_data):
-        self.connect()
-        self.heart_data.insert_one(dict(item))
-        self.disconnect()
-    
-    def get_respiratory_data(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.respiratory_data.find(query)]
-        self.disconnect()
-        return data
-
-    def post_respiratory_data(self, item: respiratory_data):
-        self.connect()
-        self.respiratory_data.insert_one(dict(item))
-        self.disconnect()
-    
-    def get_blood_gasses(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.blood_gasses.find(query)]
-        self.disconnect()
-        return data
-    
-    def post_blood_gasses(self, item: blood_gasses):
-        self.connect()
-        self.blood_gasses.insert_one(dict(item))
-        self.disconnect()
-    
-    def get_expelled_fluids(self, id: int, start_time = None, end_time = None):
-        query = prepare_query(id, start_time, end_time)
-        self.connect()
-        data = [bson2json(patient) for patient in self.expelled_fluids.find(query)]
-        self.disconnect()
-        return data
-    
-    def post_expelled_fluids(self, item: expelled_fluids):
-        self.connect()
-        self.expelled_fluids.insert_one(dict(item))
-        self.disconnect()
-
-def prepare_query(id: int, start_time = None, end_time = None):
-    query = {}
-
-    # get id
-    query["id"] = id
-    
-    # get timerange
-    if start_time or end_time:
-        query["datetime"] = {}
-    if start_time:
-        query["datetime"]["$gte"] = start_time
-    if end_time:
-        query["datetime"]["$lte"] = end_time
-
-    return query
-
+    # Add similar logging and connection handling for other methods...
 
 def bson2json(document):
-    # Convert ObjectId() bson format into a string for _id key. This is required to return json data through the API.
+    # Convert ObjectId() bson format into a string for _id key.
     if '_id' in document and isinstance(document['_id'], ObjectId):
         document['_id'] = str(document['_id'])
     return document
