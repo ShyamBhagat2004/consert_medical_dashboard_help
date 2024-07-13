@@ -13,7 +13,7 @@
     ],
     "deploy": {
       "api": {
-        "start": "uvicorn api:app --host 0.0.0.0 --port $PORT"
+        "start": "uvicorn api:app --host 0.0.0.0 --port 8000"
       },
       "frontend": {
         "start": "serve -s build"
